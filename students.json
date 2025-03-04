@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "name": "Samarth",
+    "attendance": {
+      "DS": [
+        {
+          "date": "2025-03-04",
+          "status": "Absent"
+        },
+        {
+          "date": "2025-03-04",
+          "status": "Absent"
+        }
+      ],
+      "LINUX": [
+        {
+          "date": "2025-03-04",
+          "status": "Absent"
+        },
+        {
+          "date": "2025-03-04",
+          "status": "Absent"
+        },
+        {
+          "date": "2025-03-04",
+          "status": "Present"
+        }
+      ],
+      "AJVA": [
+        {
+          "date": "2025-03-04",
+          "status": "Absent"
+        }
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "name": "Raghav Verma",
+    "attendance": {
+      "DS": [],
+      "LINUX": [
+        {
+          "date": "2025-03-04",
+          "status": "Present"
+        }
+      ],
+      "AJVA": []
+    }
+  }
+]

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Attendance Reports</title>
+</head>
+<body>
+    <h1>Attendance Reports</h1>
+    <% subjects.forEach(subject => { %>
+        <h2><%= subject %> Attendance</h2>
+        <table border="1">
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Attendance</th>
+            </tr>
+            <% students.forEach((student, index) => { %>
+                <tr>
+                    <td><%= index + 1 %></td>
+                    <td><%= student.name %></td>
+                    <td>
+                        <% let totalPresent = student.attendance[subject]?.filter(a => a.status === "Present").length || 0; %>
+                        <% let totalClasses = student.attendance[subject]?.length || 0; %>
+                        <% let percentage = totalClasses > 0 ? ((totalPresent / totalClasses) * 100).toFixed(2) + "%" : "No Data"; %>
+                        <%= percentage %>
+                    </td>
+                </tr>
+            <% }); %>
+        </table>
+    <% }); %>
+    <br>
+    <a href="/">Back</a>
+</body>
+</html>
