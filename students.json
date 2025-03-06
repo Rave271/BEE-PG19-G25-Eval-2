@@ -33,6 +33,10 @@
         {
           "date": "2025-03-06",
           "status": "Absent"
+        },
+        {
+          "date": "2025-03-06",
+          "status": "Present"
         }
       ],
       "AJVA": [
@@ -60,6 +64,10 @@
         {
           "date": "2025-03-06",
           "status": "Present"
+        },
+        {
+          "date": "2025-03-06",
+          "status": "Present"
         }
       ],
       "AJVA": []
@@ -71,6 +79,10 @@
     "attendance": {
       "DS": [],
       "LINUX": [
+        {
+          "date": "2025-03-06",
+          "status": "Present"
+        },
         {
           "date": "2025-03-06",
           "status": "Present"

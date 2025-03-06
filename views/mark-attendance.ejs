@@ -1,117 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mark Attendance</title>
     <style>
-        /* Google Font */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+      /* Google Font */
+      @import url("https://fonts.googleapis.com/css2?family=Big+Shoulders:opsz,wght@10..72,100..900&family=Josefin+Sans:ital@0;1&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-        /* General Styling */
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #2a0034, #6a0572);
-            color: #fff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            text-align: center;
-        }
+      /* General Styling */
+      body {
+        font-family: "Josefin Sans", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+        background: linear-gradient(135deg, #000000, #2a0034, #000000);
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        text-align: center;
+      }
 
-        h1 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
+      h1 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+        font-weight: 600;
+      }
 
-        form {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            width: 80%;
-            max-width: 600px;
-        }
+      form {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        width: 80%;
+        max-width: 600px;
+        margin-bottom: 20px;
+      }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 15px;
-        }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 15px;
+      }
 
-        th, td {
-            padding: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            text-align: center;
-        }
+      th,
+      td {
+        padding: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        text-align: center;
+      }
 
-        th {
-            background: rgba(255, 255, 255, 0.2);
-            font-weight: 600;
-        }
+      th {
+        background: rgba(255, 255, 255, 0.2);
+        font-weight: 600;
+      }
 
-        select {
-            padding: 5px;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
+      select {
+        padding: 5px;
+        border-radius: 5px;
+        font-size: 1rem;
+      }
 
-        button {
-            background: #d63384;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            font-size: 1rem;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
+      button {
+        background: #000000;
+        color: #ffffff;
+        border: none;
+        padding: 20px 15px;
+        font-size: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: background 0.3s ease;
+      }
 
-        button:hover {
-            background: #a12266;
-        }
+      button:hover {
+        transform: scale(1);
+        transition: transform 1s, color 0.5s, background-color 0.5s;
+        color: #2a0034;
+        background-color: white;
+      }
 
-        a {
-            margin-top: 15px;
-            color: #d63384;
-            text-decoration: none;
-            font-size: 1rem;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
+      a {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 12px 20px;
+        border-radius: 8px;
+        color: #d63384;
+        text-decoration: none;
+        font-size: 1.2rem;
+        font-weight: 500;
+        transition: 0.3s;
+        background: #000000;
+        color: white;
+        transform: scale(1.25);
+      }
+      a:hover {
+        transform: scale(1);
+        transition: transform 1s, color 0.5s, background-color 0.5s;
+        color: #2a0034;
+        background-color: white;
+      }
+      
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Mark Attendance for <%= subject %></h1>
     <form action="/submit-attendance" method="POST">
-        <input type="hidden" name="subject" value="<%= subject %>">
-        <table>
-            <tr>
-                <th>#</th>
-                <th>Student Name</th>
-                <th>Attendance</th>
-            </tr>
-            <% students.forEach((student, index) => { %>
-                <tr>
-                    <td><%= index + 1 %></td>
-                    <td><%= student.name %></td>
-                    <td>
-                        <select name="attendance_<%= student.id %>">
-                            <option value="Present">Present</option>
-                            <option value="Absent">Absent</option>
-                        </select>
-                    </td>
-                </tr>
-            <% }); %>
-        </table>
-        <button type="submit">Submit Attendance</button>
+      <input type="hidden" name="subject" value="<%= subject %>" />
+      <table>
+        <tr>
+          <th>#</th>
+          <th>Student Name</th>
+          <th>Attendance</th>
+        </tr>
+        <% students.forEach((student, index) => { %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= student.name %></td>
+          <td>
+            <select name="attendance_<%= student.id %>">
+              <option value="Present">Present</option>
+              <option value="Absent">Absent</option>
+            </select>
+          </td>
+        </tr>
+        <% }); %>
+      </table>
+      <button type="submit">Submit Attendance</button>
     </form>
     <a href="/select-subject">Back</a>
-</body>
+  </body>
 </html>
