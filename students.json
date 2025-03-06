@@ -25,6 +25,14 @@
         {
           "date": "2025-03-04",
           "status": "Present"
+        },
+        {
+          "date": "2025-03-06",
+          "status": "Absent"
+        },
+        {
+          "date": "2025-03-06",
+          "status": "Absent"
         }
       ],
       "AJVA": [
@@ -43,6 +51,28 @@
       "LINUX": [
         {
           "date": "2025-03-04",
+          "status": "Present"
+        },
+        {
+          "date": "2025-03-06",
+          "status": "Present"
+        },
+        {
+          "date": "2025-03-06",
+          "status": "Present"
+        }
+      ],
+      "AJVA": []
+    }
+  },
+  {
+    "id": 3,
+    "name": "Sahil",
+    "attendance": {
+      "DS": [],
+      "LINUX": [
+        {
+          "date": "2025-03-06",
           "status": "Present"
         }
       ],

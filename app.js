@@ -7,7 +7,22 @@ const studentsFile = "students.json";
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
+
+// Built-in Middleware for parsing form data
 app.use(express.urlencoded({ extended: true }));
+
+// Custom Middleware: Logging Middleware
+const requestLogger = (req, res, next) => {
+    console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+    next();
+};
+app.use(requestLogger);
+
+// Custom Middleware: Load Students Data
+const loadStudents = (req, res, next) => {
+    req.students = getStudents(); // Attach students data to req object
+    next();
+};
 
 // Home Page
 app.get("/", (req, res) => {
@@ -19,9 +34,9 @@ app.get("/select-subject", (req, res) => {
     res.render("select-subject");
 });
 
-// Attendance Marking Page
-app.get("/mark-attendance", (req, res) => {
-    let students = getStudents();
+// Attendance Marking Page (Uses Middleware)
+app.get("/mark-attendance", loadStudents, (req, res) => {
+    let students = req.students;
     let subject = req.query.subject;
 
     if (!subject) {
@@ -32,8 +47,8 @@ app.get("/mark-attendance", (req, res) => {
 });
 
 // Submit Attendance
-app.post("/submit-attendance", (req, res) => {
-    let students = getStudents();
+app.post("/submit-attendance", loadStudents, (req, res) => {
+    let students = req.students;
     let subject = req.body.subject;
     let date = new Date().toISOString().split("T")[0]; // Current Date
 
@@ -58,8 +73,8 @@ app.get("/add-student", (req, res) => {
 });
 
 // Handle Adding a Student
-app.post("/add-student", (req, res) => {
-    let students = getStudents();
+app.post("/add-student", loadStudents, (req, res) => {
+    let students = req.students;
     let newStudent = {
         id: students.length + 1,
         name: req.body.name,
@@ -72,8 +87,8 @@ app.post("/add-student", (req, res) => {
 });
 
 // Reports Page
-app.get("/reports", (req, res) => {
-    let students = getStudents();
+app.get("/reports", loadStudents, (req, res) => {
+    let students = req.students;
     let subjects = ["DS", "LINUX", "AJVA"];
     res.render("reports", { students, subjects });
 });
