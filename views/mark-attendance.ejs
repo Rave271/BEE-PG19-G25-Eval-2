@@ -1,0 +1,22 @@
+<%- include('partials/header') %>
+
+<div class="container">
+  <h1>Mark Attendance for <%= student.name %></h1>
+  <form action="/mark-attendance/<%= student.id %>" method="POST">
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date" required>
+    <label for="subject">Subject:</label>
+    <select id="subject" name="subject" required>
+      <option value="dsa">DSA</option>
+      <option value="backend">Backend</option>
+    </select>
+    <label for="status">Status:</label>
+    <select id="status" name="status" required>
+      <option value="Present">Present</option>
+      <option value="Absent">Absent</option>
+    </select>
+    <button type="submit" class="btn">Mark Attendance</button>
+  </form>
+</div>
+
+<%- include('partials/footer') %>

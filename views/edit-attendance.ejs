@@ -1,0 +1,24 @@
+<%- include('partials/header') %>
+
+<div class="container">
+  <h1>Edit Attendance for <%= student.name %> (<%= subject %>)</h1>
+  <a href="/records/<%= student.id %>?subject=<%= subject %>" class="btn">Back to Records</a>
+
+  <form action="/edit-attendance/<%= student.id %>" method="POST">
+    <input type="hidden" name="subject" value="<%= subject %>">
+    <input type="hidden" name="index" value="<%= index %>">
+
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date" value="<%= record.date %>" readonly>
+
+    <label for="status">Status:</label>
+    <select id="status" name="status" required>
+      <option value="Present" <%= record.status === 'Present' ? 'selected' : '' %>>Present</option>
+      <option value="Absent" <%= record.status === 'Absent' ? 'selected' : '' %>>Absent</option>
+    </select>
+
+    <button type="submit" class="btn">Update Attendance</button>
+  </form>
+</div>
+
+<%- include('partials/footer') %>

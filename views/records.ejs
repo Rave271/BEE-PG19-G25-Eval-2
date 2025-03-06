@@ -1,0 +1,37 @@
+<%- include('partials/header') %>
+
+<div class="container">
+  <h1>Attendance Records for <%= student.name %> (<%= subject %>)</h1>
+  <a href="/" class="btn">Back to Home</a>
+
+  <table class="records-table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (student.attendance[subject] && student.attendance[subject].length > 0) { %>
+        <% student.attendance[subject].forEach((day, index) => { %>
+          <tr>
+            <td><%= day.date %></td>
+            <td class="attendance-status <%= day.status.toLowerCase() %>">
+              <%= day.status %>
+            </td>
+            <td>
+              <a href="/edit-attendance/<%= student.id %>?subject=<%= subject %>&index=<%= index %>" class="btn">Edit</a>
+            </td>
+          </tr>
+        <% }) %>
+      <% } else { %>
+        <tr>
+          <td colspan="3">No attendance records found.</td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>
+
+<%- include('partials/footer') %>

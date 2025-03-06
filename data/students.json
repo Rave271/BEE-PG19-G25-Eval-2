@@ -1,0 +1,23 @@
+[
+  {
+    "id": 2,
+    "name": "raghav verma",
+    "attendance": {
+      "dsa": [
+        {
+          "date": "2025-03-07",
+          "status": "Absent"
+        }
+      ],
+      "backend": []
+    }
+  },
+  {
+    "id": 2,
+    "name": "hdwjb",
+    "attendance": {
+      "dsa": [],
+      "backend": []
+    }
+  }
+]

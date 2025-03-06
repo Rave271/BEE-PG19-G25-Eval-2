@@ -1,0 +1,12 @@
+<%- include('partials/header') %>
+
+<div class="container">
+  <h1>Edit Student</h1>
+  <form action="/edit/<%= student.id %>" method="POST">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" value="<%= student.name %>" required>
+    <button type="submit" class="btn">Update Student</button>
+  </form>
+</div>
+
+<%- include('partials/footer') %>

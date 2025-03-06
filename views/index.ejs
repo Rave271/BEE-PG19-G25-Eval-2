@@ -1,0 +1,44 @@
+<%- include('partials/header') %>
+
+<div class="container">
+  <h1>Student Attendance System</h1>
+  <a href="/add" class="btn">Add Student</a>
+
+  <!-- Dropdown for subjects -->
+  <form action="/" method="GET" class="subject-filter">
+    <label for="subject">Select Subject:</label>
+    <select id="subject" name="subject" onchange="this.form.submit()">
+      <option value="dsa" <%= subject === 'dsa' ? 'selected' : '' %>>DSA</option>
+      <option value="backend" <%= subject === 'backend' ? 'selected' : '' %>>Backend</option>
+    </select>
+  </form>
+
+  <!-- Attendance Table -->
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Percentage (<%= subject %>)</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% students.forEach(student => { %>
+        <tr>
+          <td><%= student.id %></td>
+          <td><%= student.name %></td>
+          <td><%= student.percentage[subject] %>%</td>
+          <td>
+            <a href="/edit/<%= student.id %>" class="btn">Edit</a>
+            <a href="/mark-attendance/<%= student.id %>" class="btn">Mark Attendance</a>
+            <a href="/records/<%= student.id %>?subject=<%= subject %>" class="btn">Records</a>
+            <a href="/delete/<%= student.id %>" class="btn btn-danger">Delete</a>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+
+<%- include('partials/footer') %>
